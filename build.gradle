@@ -1,0 +1,133 @@
+buildscript {
+
+    // 编译: 2020-01-03
+    ext.support_gradle_version = '4.1.2'
+
+    // https://developer.android.google.cn/jetpack/androidx/versions
+    // 核心: 2020-01-03
+    ext.support_activity_version = '1.1.0'
+    ext.support_fragment_version = '1.2.5'
+    ext.support_annotation_version = "1.1.0"
+    ext.support_appcompat_version = "1.1.0"
+
+    // 三方: 2020-01-03
+    ext.support_rxandroid_version = "3.0.0"
+    ext.support_rxjava_version = "3.0.3"
+    ext.support_retrofit_version = '2.9.0'
+    ext.support_okhttp_version = "3.14.9"
+    ext.support_okio_version = "1.17.5"
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${support_gradle_version}"
+    }
+}
+
+allprojects {
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+    }
+}
+
+ext {
+
+    // 常量
+    plugin = [
+            com_android_application: 'com.android.application',
+            com_android_library    : 'com.android.library',
+            java                   : 'java',
+            armeabi                : 'armeabi',
+            x86                    : 'x86',
+    ]
+
+    // 版本
+    android = [
+            applicationId    : "com.kalu.socialtool",
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
+            minSdkVersion    : 23,
+            targetSdkVersion : 29, // 28之后强制使用https, 否则报错, 或者networkSecurityConfig
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    // 配置
+    config = [
+
+            // 日志
+            logDev             : "true", // ==> 配置文件, 需要确认
+            logNet             : "false", // ==> 配置文件, 需要确认
+
+            // <== 配置文件, 需要确认
+
+            ////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////
+
+            // ==> 配置文件, 不要改动
+
+            string             : "String",
+            stringRes          : "string",
+            int                : "int",
+            boolean            : "boolean",
+
+            api                : "api",
+            web                : "web",
+            wxKey              : "wxKey",
+            webRoot            : "webRoot",
+            welcome            : "welcome",
+            download           : "download",
+            anychatIp          : "anychatIp",
+            anychatPort        : "anychatPort",
+            anychatAppid       : "anychatAppid",
+            umengAppKey        : "umengAppKey",
+            umengAppSecret     : "umengAppSecret",
+            umengAnalytics     : "isUmengAnalytics",
+
+            pdfUrl             : "pdfUrl",
+            pdfUrlTarget       : "pdfUrlTarget",
+            urlAppendAes       : "urlAppendAes",
+            urlAppendFile      : "urlAppendFile",
+            urlAppendFiles     : "urlAppendFiles",
+            proxy              : "isProxy",
+            aes                : "isAes",
+            log                : "isLog",
+            idcard             : "isIdcard",
+
+            umengChannel       : "umengChannel",
+            umengChannelCaitc  : "\"caitc\"",
+            umengChannelHuawei : "\"huawei\"",
+            umengChannelTencent: "\"tencent\"",
+
+            appName            : "module_string_app_name",
+            appNameDev         : "文件选择",
+            appNameNet         : "文件选择",
+
+            // <== 配置文件, 不要改动
+    ]
+
+    // 依赖
+    dependencies = [
+
+            // 核心: 2020-01-03
+            "support_activity"  : "androidx.activity:activity:$support_activity_version",
+            "support_fragment"  : "androidx.fragment:fragment:$support_fragment_version",
+            "support_annotation": "androidx.annotation:annotation:$support_annotation_version",
+            "support_appcompat" : "androidx.appcompat:appcompat:$support_appcompat_version",
+
+
+            // 三方: 2020-01-03
+            "retrofit_core"                : "com.squareup.retrofit2:retrofit:$support_retrofit_version",
+            "retrofit_converter"           : "com.squareup.retrofit2:converter-gson:$support_retrofit_version",
+            "rxandroid"                    : "io.reactivex.rxjava3:rxandroid:$support_rxandroid_version",
+            "rxjava"                       : "io.reactivex.rxjava3:rxjava:$support_rxjava_version",
+            "okio"                         : "com.squareup.okio:okio:$support_okio_version",
+            "okhttp"                       : "com.squareup.okhttp3:okhttp:$support_okhttp_version",
+    ]
+}

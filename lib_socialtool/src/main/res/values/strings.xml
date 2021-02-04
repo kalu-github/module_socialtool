@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="social_install_wechat">请安装微信app</string>
+    <string name="social_null_wechat">微信支付传递参数存在空值</string>
+
+</resources>
