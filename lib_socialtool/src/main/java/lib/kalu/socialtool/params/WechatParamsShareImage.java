@@ -1,11 +1,14 @@
 package lib.kalu.socialtool.params;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
 /**
  * description: 图片类型分享示例
  * created by kalu on 2021-02-08
  */
+@Keep
 public class WechatParamsShareImage implements WechatParamsShare, Serializable {
 
     private int sceneType = SCENE_ONLY_WXSCENESESSION;

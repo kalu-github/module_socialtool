@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -27,6 +29,7 @@ import lib.kalu.socialtool.params.WechatParamsShareImage;
 /**
  * @see <a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417751808&token=&lang=zh_CN">Des</a>
  */
+@Keep
 public class WechatClient implements WechatClientImpl, RespCallback {
 
     private static WechatClient mWechatRequestClientImpi;

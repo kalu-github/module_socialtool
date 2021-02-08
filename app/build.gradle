@@ -97,7 +97,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // 模块依赖
-    implementation project(':lib_socialtool')
+    // implementation project(':lib_socialtool')
+    implementation(name: 'lib_socialtool-release', ext: 'aar')
     implementation(name: 'wechat-sdk-android-without-mta-6.6.20', ext: 'aar')
 
     // 三方依赖
