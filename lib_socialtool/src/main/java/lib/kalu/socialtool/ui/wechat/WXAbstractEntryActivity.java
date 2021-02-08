@@ -12,7 +12,9 @@ import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import lib.kalu.socialtool.wechat.WechatRequestClientImpi;
+
+import lib.kalu.socialtool.client.WechatClient;
+import lib.kalu.socialtool.callback.RespCallback;
 
 /**
  * description: 微信支付回调 WXAbstractEntryActivity
@@ -24,14 +26,14 @@ public abstract class WXAbstractEntryActivity extends Activity implements IWXAPI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WechatRequestClientImpi.getInstance(this, "").getWXApi().handleIntent(getIntent(), this);
+        WechatClient.getInstance(this, initWxAppId()).getWXApi().handleIntent(getIntent(), this);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        WechatRequestClientImpi.getInstance(this, "").getWXApi().handleIntent(intent, this);
+        WechatClient.getInstance(this, initWxAppId()).getWXApi().handleIntent(intent, this);
     }
 
     @Override
@@ -59,7 +61,7 @@ public abstract class WXAbstractEntryActivity extends Activity implements IWXAPI
                     resultCodeL = "";
                 }
 
-                WechatRequestClientImpi.getInstance(this, "").onLoginResp(errorCodeL, errStrL, resultCodeL);
+                WechatClient.getInstance(this, "").onResp(RespCallback.SDK_CALLBACK_TYPE_LOGIN, errorCodeL, errStrL, resultCodeL);
 
                 break;
             // 支付
@@ -75,7 +77,7 @@ public abstract class WXAbstractEntryActivity extends Activity implements IWXAPI
                     resultCodeP = "";
                 }
 
-                WechatRequestClientImpi.getInstance(this, "").onPayResp(errorCodeP, errStrP, resultCodeP);
+                WechatClient.getInstance(this, initWxAppId()).onResp(RespCallback.SDK_CALLBACK_TYPE_PAYMENT, errorCodeP, errStrP, resultCodeP);
 
                 break;
             // 分享
@@ -91,7 +93,7 @@ public abstract class WXAbstractEntryActivity extends Activity implements IWXAPI
                     resultCodeS = "";
                 }
 
-                WechatRequestClientImpi.getInstance(this, "").onShareResp(errorCodeS, errStrS, resultCodeS);
+                WechatClient.getInstance(this, initWxAppId()).onResp(RespCallback.SDK_CALLBACK_TYPE_SHARE, errorCodeS, errStrS, resultCodeS);
                 break;
             // other
             default:
@@ -101,4 +103,6 @@ public abstract class WXAbstractEntryActivity extends Activity implements IWXAPI
 
         finish();
     }
+
+    protected abstract String initWxAppId();
 }

@@ -123,11 +123,11 @@ ext {
 
 
             // 三方: 2020-01-03
-            "retrofit_core"                : "com.squareup.retrofit2:retrofit:$support_retrofit_version",
-            "retrofit_converter"           : "com.squareup.retrofit2:converter-gson:$support_retrofit_version",
-            "rxandroid"                    : "io.reactivex.rxjava3:rxandroid:$support_rxandroid_version",
-            "rxjava"                       : "io.reactivex.rxjava3:rxjava:$support_rxjava_version",
-            "okio"                         : "com.squareup.okio:okio:$support_okio_version",
-            "okhttp"                       : "com.squareup.okhttp3:okhttp:$support_okhttp_version",
+            "retrofit_core"     : "com.squareup.retrofit2:retrofit:$support_retrofit_version",
+            "retrofit_converter": "com.squareup.retrofit2:converter-gson:$support_retrofit_version",
+            "rxandroid"         : "io.reactivex.rxjava3:rxandroid:$support_rxandroid_version",
+            "rxjava"            : "io.reactivex.rxjava3:rxjava:$support_rxjava_version",
+            "okio"              : "com.squareup.okio:okio:$support_okio_version",
+            "okhttp"            : "com.squareup.okhttp3:okhttp:$support_okhttp_version",
     ]
 }

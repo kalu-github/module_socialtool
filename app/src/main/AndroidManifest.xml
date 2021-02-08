@@ -29,6 +29,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--微信分享-->
+        <activity
+            android:name="com.kalu.socialtool.wxapi.WXEntryActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+
     </application>
 
 </manifest>

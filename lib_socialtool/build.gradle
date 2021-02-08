@@ -47,6 +47,9 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // wechat-sdk-android-without-mta-6.6.20.aar
+    implementation(name: 'wechat-sdk-android-without-mta-6.6.20', ext: 'aar')
+
     // 三方依赖
     implementation rootProject.ext.dependencies.support_activity
     implementation rootProject.ext.dependencies.support_fragment

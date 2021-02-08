@@ -98,6 +98,7 @@ dependencies {
 
     // 模块依赖
     implementation project(':lib_socialtool')
+    implementation(name: 'wechat-sdk-android-without-mta-6.6.20', ext: 'aar')
 
     // 三方依赖
     implementation rootProject.ext.dependencies.support_activity
