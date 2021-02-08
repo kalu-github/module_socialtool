@@ -106,4 +106,10 @@ dependencies {
     implementation rootProject.ext.dependencies.support_fragment
     implementation rootProject.ext.dependencies.support_annotation
     implementation rootProject.ext.dependencies.support_appcompat
+
+    implementation rootProject.ext.dependencies.rxandroid
+    implementation rootProject.ext.dependencies.rxjava
+    implementation rootProject.ext.dependencies.retrofit_core
+    implementation rootProject.ext.dependencies.okio
+    implementation rootProject.ext.dependencies.okhttp
 }

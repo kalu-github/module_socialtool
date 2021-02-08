@@ -17,7 +17,7 @@ import lib.kalu.socialtool.listener.OnSocialChangeListener;
  * 使用方法2：实例化payStrategy,直接调用其pay方法。如：new Alipay().pay(...)
  */
 @Keep
-public class SocialManage {
+public final class SocialManage {
 
     @Keep
     public static <T extends WechatClientImpl, M extends WechatParamsImpl> void login(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
