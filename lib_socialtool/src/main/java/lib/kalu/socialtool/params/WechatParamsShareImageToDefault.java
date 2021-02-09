@@ -4,14 +4,15 @@ import androidx.annotation.Keep;
 
 import java.io.Serializable;
 
+import lib.kalu.socialtool.impl.ParamsImpl;
+
 /**
- * description: 图片类型分享示例
- * created by kalu on 2021-02-08
+ * description: 发起参数 - 微信 - 分享到对话
+ * created by kalu on 2021-02-09
  */
 @Keep
-public class WechatParamsShareImage implements WechatParamsShare, Serializable {
+public class WechatParamsShareImageToDefault implements Serializable, ParamsImpl {
 
-    private int sceneType = SCENE_ONLY_WXSCENESESSION;
     private byte[] imageData = null;
     private String imagePath = null;
 
@@ -31,21 +32,13 @@ public class WechatParamsShareImage implements WechatParamsShare, Serializable {
         this.imagePath = imagePath;
     }
 
-    public int getSceneType() {
-        return sceneType;
-    }
-
-    public void setSceneType(int sceneType) {
-        this.sceneType = sceneType;
-    }
-
     @Override
     public int contentType() {
-        return CONTENT_ONLY_IMAGE;
+        return CONTENT_WECHAT_IMAGE;
     }
 
     @Override
-    public int sceneType() {
-        return getSceneType();
+    public int platfromType() {
+        return PLATFROM_WECHAT_WXSCENESESSION;
     }
 }

@@ -6,8 +6,10 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
+import lib.kalu.socialtool.impl.ParamsImpl;
 import lib.kalu.socialtool.impl.WechatClientImpl;
-import lib.kalu.socialtool.impl.WechatParamsImpl;
 import lib.kalu.socialtool.listener.OnSocialChangeListener;
 
 /**
@@ -20,17 +22,17 @@ import lib.kalu.socialtool.listener.OnSocialChangeListener;
 public final class SocialManage {
 
     @Keep
-    public static <T extends WechatClientImpl, M extends WechatParamsImpl> void login(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
+    public static <T extends WechatClientImpl, M extends ParamsImpl & Serializable> void login(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
         client.login(mActivity, params, callback);
     }
 
     @Keep
-    public static <T extends WechatClientImpl, M extends WechatParamsImpl> void pay(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
+    public static <T extends WechatClientImpl, M extends ParamsImpl & Serializable> void pay(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
         client.pay(mActivity, params, callback);
     }
 
     @Keep
-    public static <T extends WechatClientImpl, M extends WechatParamsImpl> void share(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
+    public static <T extends WechatClientImpl, M extends ParamsImpl & Serializable> void share(@NonNull Activity mActivity, @NonNull T client, @NonNull M params, @Nullable OnSocialChangeListener callback) {
         client.share(mActivity, params, callback);
     }
 }

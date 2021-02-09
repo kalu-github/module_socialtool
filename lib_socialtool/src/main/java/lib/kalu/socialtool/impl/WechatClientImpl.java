@@ -2,6 +2,8 @@ package lib.kalu.socialtool.impl;
 
 import android.app.Activity;
 
+import java.io.Serializable;
+
 import lib.kalu.socialtool.listener.OnSocialChangeListener;
 
 /**
@@ -17,7 +19,7 @@ public interface WechatClientImpl {
      * @param callback
      * @param <M>
      */
-    <M extends WechatParamsImpl> void login(Activity activity, M request, OnSocialChangeListener callback);
+    <M extends ParamsImpl & Serializable> void login(Activity activity, M request, OnSocialChangeListener callback);
 
     /**
      * 支付
@@ -27,7 +29,7 @@ public interface WechatClientImpl {
      * @param callback
      * @param <M>
      */
-    <M extends WechatParamsImpl> void pay(Activity activity, M request, OnSocialChangeListener callback);
+    <M extends ParamsImpl & Serializable> void pay(Activity activity, M request, OnSocialChangeListener callback);
 
     /**
      * 分享
@@ -37,5 +39,5 @@ public interface WechatClientImpl {
      * @param callback
      * @param <M>
      */
-    <M extends WechatParamsImpl> void share(Activity activity, M request, OnSocialChangeListener callback);
+    <M extends ParamsImpl & Serializable> void share(Activity activity, M request, OnSocialChangeListener callback);
 }

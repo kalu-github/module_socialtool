@@ -16,15 +16,14 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import lib.kalu.socialtool.R;
 import lib.kalu.socialtool.callback.RespCallback;
-import lib.kalu.socialtool.create.WechatMedia;
-import lib.kalu.socialtool.create.WechatMediaImage;
+import lib.kalu.socialtool.impl.ParamsImpl;
 import lib.kalu.socialtool.impl.WechatClientImpl;
-import lib.kalu.socialtool.impl.WechatParamsImpl;
 import lib.kalu.socialtool.listener.OnSocialChangeListener;
+import lib.kalu.socialtool.impl.MediaImpl;
+import lib.kalu.socialtool.media.WechatMediaImage;
+import lib.kalu.socialtool.media.WechatMediaWebpage;
 import lib.kalu.socialtool.params.WechatParamsLogin;
 import lib.kalu.socialtool.params.WechatParamsPay;
-import lib.kalu.socialtool.params.WechatParamsShare;
-import lib.kalu.socialtool.params.WechatParamsShareImage;
 
 /**
  * @see <a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=1417751808&token=&lang=zh_CN">Des</a>
@@ -65,7 +64,7 @@ public class WechatClient implements WechatClientImpl, RespCallback {
     }
 
     @Override
-    public void login(Activity activity, WechatParamsImpl request, OnSocialChangeListener callback) {
+    public void login(Activity activity, ParamsImpl request, OnSocialChangeListener callback) {
 
         if (!(request instanceof WechatParamsLogin))
             return;
@@ -107,7 +106,7 @@ public class WechatClient implements WechatClientImpl, RespCallback {
     }
 
     @Override
-    public void pay(Activity activity, WechatParamsImpl request, OnSocialChangeListener callback) {
+    public void pay(Activity activity, ParamsImpl request, OnSocialChangeListener callback) {
 
         if (!(request instanceof WechatParamsPay))
             return;
@@ -163,18 +162,27 @@ public class WechatClient implements WechatClientImpl, RespCallback {
     }
 
     @Override
-    public void share(Activity activity, WechatParamsImpl request, OnSocialChangeListener callback) {
+    public void share(Activity activity, ParamsImpl request, OnSocialChangeListener callback) {
 
         Log.d("wechatrequestclientimpi", "share => request = " + request + ", callback = " + callback);
 
         this.mOnSocialChangeListener = callback;
-        if (!(request instanceof WechatParamsShare))
-            return;
 
         if (null != this.mOnSocialChangeListener) {
             this.mOnSocialChangeListener.onStart();
         }
 
+        // 非微信平台
+        if (request.platfromType() != ParamsImpl.PLATFROM_WECHAT_WXSCENESESSION && request.platfromType() != ParamsImpl.PLATFROM_WECHAT_WXSCENETIMELINE && request.platfromType() != ParamsImpl.PLATFROM_WECHAT_WXSCENEFAVORITE) {
+
+            if (mOnSocialChangeListener != null) {
+                String str = activity.getResources().getString(R.string.social_install_wechat);
+                mOnSocialChangeListener.onFail(str);
+            }
+            return;
+        }
+
+        // 未安装微信
         boolean support = isSupport();
         if (!support) {
             if (mOnSocialChangeListener != null) {
@@ -184,12 +192,17 @@ public class WechatClient implements WechatClientImpl, RespCallback {
             return;
         }
 
-        WechatMedia wechatMedia;
+        MediaImpl wechatMedia;
         //  图片类型分享示例, WXImageObject （WXMediaMessage.IMediaObject 的派生类，用于描述一个图片对象）
-        if (WechatParamsShare.CONTENT_ONLY_IMAGE == request.contentType()) {
-            WechatParamsShareImage wechatParamsShareImage = (WechatParamsShareImage) request;
-            wechatMedia = new WechatMediaImage(wechatParamsShareImage);
-        } else {
+        if (ParamsImpl.CONTENT_WECHAT_IMAGE == request.contentType()) {
+            wechatMedia = new WechatMediaImage(request);
+        }
+        // 网页类型分享示例, WXWebpageObject （WXMediaMessage.IMediaObject 的派生类，用于描述一个网页对象）
+        else if (ParamsImpl.CONTENT_WECHAT_WEBPAGE == request.contentType()) {
+            wechatMedia = new WechatMediaWebpage(request);
+        }
+        // 容错
+        else {
             wechatMedia = null;
         }
 
@@ -206,7 +219,7 @@ public class WechatClient implements WechatClientImpl, RespCallback {
             SendMessageToWX.Req req = new SendMessageToWX.Req();
             req.transaction = "webpage" + System.nanoTime();
             req.message = wechatMedia.create();
-            req.scene = request.sceneType();
+            req.scene = request.platfromType();
             mWXApi.sendReq(req);
         }
     }

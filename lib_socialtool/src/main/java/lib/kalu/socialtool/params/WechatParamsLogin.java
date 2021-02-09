@@ -2,12 +2,12 @@ package lib.kalu.socialtool.params;
 
 import java.io.Serializable;
 
-import lib.kalu.socialtool.impl.WechatParamsImpl;
+import lib.kalu.socialtool.impl.ParamsImpl;
 
 /**
  * 描述 ：
  */
-public class WechatParamsLogin implements WechatParamsImpl, Serializable {
+public class WechatParamsLogin implements Serializable, ParamsImpl {
 
     private String reqScope;
     private String reqState;
@@ -34,7 +34,8 @@ public class WechatParamsLogin implements WechatParamsImpl, Serializable {
     }
 
     @Override
-    public int sceneType() {
+    public int platfromType() {
         return 0;
     }
+
 }
