@@ -9,10 +9,64 @@
 https://bintray.com/wechat-sdk-team/maven
 https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Share_and_Favorites/Android.html
 ```
+
 #
-#### 分享
+#### 微信：分享图片
 ```
-微信, QQ
+        WechatClient client = WechatClient.getInstance(this, "wxAppId");
+        WechatParamsShareImageToDefault params = new WechatParamsShareImageToDefault();
+
+        SocialManage.share(this, client, params, new OnSocialChangeListener() {
+            @Override
+            public void onStart() {
+                Log.e("kalu", "wxShare1 => onStart");
+            }
+
+            @Override
+            public void onSucc(String loginTokenCode) {
+                Log.e("kalu", "wxShare1 => onSucc");
+            }
+
+            @Override
+            public void onFail(String message) {
+                Log.e("kalu", "wxShare1 => onFail");
+            }
+
+            @Override
+            public void onCancel() {
+                Log.e("kalu", "wxShare1 => onCancel");
+            }
+        });
+```
+
+
+#
+#### 微信：分享网页
+```
+        WechatClient client = WechatClient.getInstance(this, "wxAppId");
+        WechatParamsShareWebpageToDefault params = new WechatParamsShareWebpageToDefault();
+
+        SocialManage.share(this, client, params, new OnSocialChangeListener() {
+            @Override
+            public void onStart() {
+                Log.e("kalu", "wxShare1 => onStart");
+            }
+
+            @Override
+            public void onSucc(String loginTokenCode) {
+                Log.e("kalu", "wxShare1 => onSucc");
+            }
+
+            @Override
+            public void onFail(String message) {
+                Log.e("kalu", "wxShare1 => onFail");
+            }
+
+            @Override
+            public void onCancel() {
+                Log.e("kalu", "wxShare1 => onCancel");
+            }
+        });
 ```
 
 #
