@@ -32,7 +32,7 @@
 
         <!--微信分享-->
         <activity
-            android:name="com.kalu.socialtool.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:exported="true"
             android:launchMode="singleTop"

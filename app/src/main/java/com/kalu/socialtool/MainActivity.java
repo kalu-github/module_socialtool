@@ -12,7 +12,7 @@ import java.io.InputStream;
 import lib.kalu.socialtool.SocialManage;
 import lib.kalu.socialtool.client.WechatClient;
 import lib.kalu.socialtool.listener.OnSocialChangeListener;
-import lib.kalu.socialtool.params.WechatParamsShareImage;
+import lib.kalu.socialtool.params.WechatParamsShareImageToDefault;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void wxShare1() {
 
         WechatClient client = WechatClient.getInstance(this, "wx08e09091ee25095f");
-        WechatParamsShareImage params = new WechatParamsShareImage();
+        WechatParamsShareImageToDefault params = new WechatParamsShareImageToDefault();
         params.setImagePath("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa4.att.hudong.com%2F27%2F67%2F01300000921826141299672233506.jpg&refer=http%3A%2F%2Fa4.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615365854&t=a8c62191e074594745e87c140732d2e9");
 
         SocialManage.share(this, client, params, new OnSocialChangeListener() {
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = baos.toByteArray();
 
             WechatClient client = WechatClient.getInstance(this, "wx08e09091ee25095f");
-            WechatParamsShareImage params = new WechatParamsShareImage();
+            WechatParamsShareImageToDefault params = new WechatParamsShareImageToDefault();
             params.setImageData(bytes);
 
             SocialManage.share(this, client, params, new OnSocialChangeListener() {
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = baos.toByteArray();
 
             WechatClient client = WechatClient.getInstance(this, "wx08e09091ee25095f");
-            WechatParamsShareImage params = new WechatParamsShareImage();
+            WechatParamsShareImageToDefault params = new WechatParamsShareImageToDefault();
             params.setImageData(bytes);
 
             SocialManage.share(this, client, params, new OnSocialChangeListener() {
