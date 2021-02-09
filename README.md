@@ -4,7 +4,7 @@
 ![image](https://github.com/153437803/SocialTool/blob/master/image20210208172000.gif )
 
 #
-#### 微信sdk
+#### 微信文档
 ```
 https://bintray.com/wechat-sdk-team/maven
 https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Share_and_Favorites/Android.html
