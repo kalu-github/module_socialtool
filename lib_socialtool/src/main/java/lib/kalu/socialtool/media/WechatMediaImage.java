@@ -10,8 +10,8 @@ import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
-import lib.kalu.socialtool.impl.ParamsImpl;
 import lib.kalu.socialtool.impl.MediaImpl;
+import lib.kalu.socialtool.impl.ParamsImpl;
 import lib.kalu.socialtool.params.WechatParamsShareImageToDefault;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -61,8 +61,8 @@ public final class WechatMediaImage implements MediaImpl {
 
     public WXMediaMessage createWXMediaMessage(@NonNull byte[] bytes) {
 
-        // 检查原图大小, 10M
-        long max1 = 1055644;
+        // 检查原图大小, 1M
+        long max1 = 1 * 1024 * 1024;
         byte[] imageBytes = checkBytes(bytes, max1, false);
 
         // 检查缩略图, 32KB
@@ -100,8 +100,8 @@ public final class WechatMediaImage implements MediaImpl {
                 }
             }).get();
 
-            // 检查原图大小, 10M
-            long max1 = 1055644;
+            // 检查原图大小, 1M
+            long max1 = 1 * 1024 * 1024;
             byte[] imageBytes = checkBytes(bytes, max1, false);
 
             // 检查缩略图, 32KB

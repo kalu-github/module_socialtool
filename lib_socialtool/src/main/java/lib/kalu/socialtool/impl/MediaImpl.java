@@ -87,7 +87,7 @@ public interface MediaImpl {
         Bitmap outBitMap = Bitmap.createBitmap(bitmap, 0, 0, realWidth, realHeight, matrix, true);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        outBitMap.compress(Bitmap.CompressFormat.JPEG, isThumb ? 80 : 100, baos);
+        outBitMap.compress(isThumb ? Bitmap.CompressFormat.JPEG : Bitmap.CompressFormat.PNG, isThumb ? 40 : 100, baos);
         byte[] scaleBytes = baos.toByteArray();
 
         if (null != bitmap) {
